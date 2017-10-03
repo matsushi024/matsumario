@@ -39,7 +39,7 @@ public static void main(String[] args)
 {
     final MarioAIOptions marioAIOptions = new MarioAIOptions(args);
     
-    int seed = 99;
+    int seed = 98;
     marioAIOptions.setLevelRandSeed(seed);
     
     final BasicTask basicTask = new BasicTask(marioAIOptions);
