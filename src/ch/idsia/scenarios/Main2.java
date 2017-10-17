@@ -30,7 +30,7 @@ package ch.idsia.scenarios;
 import ch.idsia.benchmark.tasks.BasicTask;
 import ch.idsia.tools.MarioAIOptions;
 import ch.idsia.agents.Agent;
-import ch.idsia.agents.controllers.ForwardJumpingAgent;
+import ch.idsia.agents.controllers.ForwardAgent;
 
 
 /**
@@ -43,13 +43,16 @@ public static void main(String[] args)
 {
     final MarioAIOptions marioAIOptions = new MarioAIOptions(args);
 
-    final Agent agent = new ForwardJumpingAgent();
+    final Agent agent = new ForwardAgent();
     marioAIOptions.setAgent(agent);
-    
-    int d = 100;
+    marioAIOptions.setEnemies("off");
+    marioAIOptions.setHiddenBlocksCount(false);
+    marioAIOptions.setBlocksCount(false);
+
+    int d = 1;
     marioAIOptions.setLevelDifficulty(d);
     
-    int seed = 99;
+    int seed = 8;
     marioAIOptions.setLevelRandSeed(seed);
     
     final BasicTask basicTask = new BasicTask(marioAIOptions);

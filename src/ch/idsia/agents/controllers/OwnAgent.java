@@ -52,10 +52,44 @@ public OwnAgent()
 public void reset()
 {
     action = new boolean[Environment.numberOfKeys];
+    action[Mario.KEY_RIGHT] = true;
+    action[Mario.KEY_SPEED] = true;
 }
+
+private boolean HoleOrBigObstacle()
+{
+	if((getReceptiveFieldCellValue(marioEgoRow + 2, marioEgoCol + 1) == 0
+			&& getReceptiveFieldCellValue(marioEgoRow + 1, marioEgoCol + 1) == 0) //forHole
+			||
+			(getReceptiveFieldCellValue(marioEgoRow, marioEgoCol + 1) != 0
+		&& getReceptiveFieldCellValue(marioEgoRow - 1, marioEgoCol + 1) != 0) /*forBigObstacle*/){
+		return true;
+	}
+	else return false;
+}
+
+
+private boolean isSmallObstacle(){
+	if(getReceptiveFieldCellValue(marioEgoRow, marioEgoCol + 1) != 0
+		&& getReceptiveFieldCellValue(marioEgoRow - 1, marioEgoCol + 1) == 0){
+		return true;
+	}
+	else return false;
+}
+
 
 public boolean[] getAction()
 {
+	
+	if(isSmallObstacle() && isMarioOnGround){
+		action[Mario.KEY_JUMP] = isMarioAbleToJump || !isMarioOnGround;
+	}
+	else if(HoleOrBigObstacle()){
+		action[Mario.KEY_JUMP] = isMarioAbleToJump || !isMarioOnGround;
+		
+	}
+	else action[Mario.KEY_JUMP] = false;
+	
     return action;
 }
 }
