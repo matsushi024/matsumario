@@ -56,7 +56,7 @@ public void reset()
     action[Mario.KEY_SPEED] = true;
 }
 
-private boolean HoleOrBigObstacle()
+private boolean isHoleOrBigObstacle()
 {
 	if((getReceptiveFieldCellValue(marioEgoRow + 2, marioEgoCol + 1) == 0
 			&& getReceptiveFieldCellValue(marioEgoRow + 1, marioEgoCol + 1) == 0) //forHole
@@ -84,7 +84,7 @@ public boolean[] getAction()
 	if(isSmallObstacle() && isMarioOnGround){
 		action[Mario.KEY_JUMP] = isMarioAbleToJump || !isMarioOnGround;
 	}
-	else if(HoleOrBigObstacle()){
+	else if(isHoleOrBigObstacle()){
 		action[Mario.KEY_JUMP] = isMarioAbleToJump || !isMarioOnGround;
 		
 	}
